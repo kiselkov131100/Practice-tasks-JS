@@ -106,3 +106,424 @@ function createRgb(a = 0, b = 1, c = 2) {
   console.log(`rgb(${String(a)}; ${String(b)}; ${String(c)})`);
 }
 createRgb();
+
+//----------------!!! РАЗНЫЕ ЗАДАЧИ !!!-----------------------
+
+/* TASK 1 
+Напишите функцию, которая параметром будет принимать число и делить его на 2 столько раз,
+пока результат не станет меньше 10. Пусть функция возвращает количество итераций,
+которое потребовалось для достижения результата. */
+
+function quantityIteration(num) {
+  let i = 0;
+  for (; num >= 10; i++) {
+    num /= 2;
+  }
+  return console.log(`Потребовалось ${i} итераций`);
+}
+quantityIteration(1000);
+
+/*TASK 2 
+- запрашивает у пользователя число от 1 до 10
+- генерирует рандомное число от 1 до 10(именно целое число, чтобы без десятых, сотых и т.д.)
+- выводит в алерт юзеру сообщение о том, что он угадал число, если числа совпали. и, соответственно - нет, если не угадали
+требования к выполнению этой задачи:
+- генерирование числа должно быть написать в функции - getRandomNumber
+- сравнение числа введенного юзера и сгенерированное программой должно происходить в функции - areNumbersEqual
+- функции getRandomNumber и areNumbersEqual должны быть описаны в отдельном от основной программы файле 
+- если юзер ввел некорректно число (> 10, или какую-нибудь строку) - сказать ему об этом и предложить сыграть еще раз */
+
+/* TASK 3 
+Напишите функцию, которая будет принимать строку, нужно вернуть новую строку, которая будет делать заглавным
+первый символ каждого слова. */
+
+/* TASK 4 
+Написать функцию, которая принимает любое количество чисел и возввращает их сумму. */
+
+function sumArg() {
+  let result = 0;
+  for (let i = 0; i < arguments.length; i++) {
+    result += arguments[i];
+  }
+  return console.log(result);
+}
+sumArg(1, 2, 3, 4, 5);
+
+/* TASK 5 
+  Написать функцию которая будет принимать число ( дефолтное значение 2021) и вычисляет сумму цифр из которых состоит число.
+  Для 2021 это будет 5. */
+
+function sumNumber(number = 2000) {
+  let result = 0;
+  number = String(number);
+  for (let i = 0; i < number.length; i++) {
+    result += Number(number[i]);
+  }
+  return console.log(result);
+}
+sumNumber();
+
+/* TASK 6 
+Написать функцию, которая преобразуем любую строку в строку написанную
+кебаб кейсом(все буквы с маленькой и на месте пробелов - тире).Например ‘Hello World’ - ‘hello - world’; */
+
+//        !!! ВЕРНУТЬСЯ К ЭТОМУ !!!
+
+/* TASK 7 
+Написать функцию, которая из любой фразы сделает и вернёт её аббревиатуру. 
+Например: ‘Республика беларусь’ -> ‘РБ’
+‘Минск’ -> ‘М’ */
+
+function creatAbbr(str) {
+  let words = str.split(" ");
+  let word = "";
+  let abbr = "";
+  for (let i = 0; i < words.length; i++) {
+    word = words[i];
+    abbr += word[0];
+  }
+  return console.log(abbr.toUpperCase());
+}
+creatAbbr("Министерство Внутренних Дел");
+
+// ОБЪЕКТЫ
+
+// Написать ф-цию, которая принимает объект и меняет местами ключи и значения
+// function convertObject(obj) {}
+// convertObject({ a: "b", c: "d" }); // => { b: 'a', d: 'c' }
+
+function convertObject(obj) {
+  for (let key in obj) {
+    let oldValue = obj[key];
+    let newValue = key;
+    obj[oldValue] = newValue;
+    delete obj[key];
+  }
+  return obj;
+}
+let obj = {
+  a: "b",
+  c: "d",
+};
+console.log(obj);
+console.log(convertObject(obj));
+
+// - Написать ф-цию, которая принимает объект, где в качестве значений - числа
+// - Ф-ция должна проверить, есть ли среди значений четные числа и вернуть true/false
+// function isEvenValue(obj) {}
+// isEvenValue({ x: 1, y: 2 }); // => true
+// isEvenValue({ x: 1, y: 1 }); // => false
+
+function isEvenValue(objNum) {
+  for (let key in objNum) {
+    if (objNum[key] % 2 == 0) {
+      return true;
+    }
+  }
+  return false;
+}
+let objNum = {
+  x: 1,
+  y: 2,
+  z: 3,
+  k: "asdas",
+  o: true,
+};
+console.log(isEvenValue(objNum));
+
+// МАССИВЫ
+
+// TASK 1
+// Написать функцию, которая принимает параметрами два массива
+// и сливает их в объект так, что элементы первого массива становятся ключами, а второго - значениями.
+
+function getObj(arr1, arr2) {
+  let obj = {};
+  for (let key of arr1) {
+    let value;
+    for (value of arr2) {
+    }
+    obj[key] = value;
+  }
+  console.log(obj);
+}
+getObj(["a", "b", "c"], [1, 2, 3]);
+
+//TASK 2
+// Дан массив вида[1, 2, 3, 4, 5, 6, 7, 8, 9].Сделайте функцию, которая будет разбивать его в двухмерный массив.
+// Первым параметром функция принимает массив для разбиения, а вторым - сколько элементов должно быть в подмассиве.
+
+function getNewArray(obj, num) {
+  let newArr = new Array(Math.ceil(obj.length / num));
+  for (let i = 0; i < newArr.length; i++) {
+    newArr[i] = obj.splice(0, num);
+  }
+  return console.log(newArr);
+}
+getNewArray([1, 2, 3, 4, 5, 6, 7, 8, 9, 10], 5);
+
+//TASK 3
+// Создать массив объектов для юзеров.
+// [{name: ‘Ivan’, age: 18}, {name: ‘Petr’, age: 12}, {name: ‘Sidor’, age: 25}, {...}, ...]
+// Написать скрипт, который будет на выходе отдавать два массива.Первый с совершеннолетними пользователями,
+// второй с несовершеннолетними.
+
+let users = [
+  { name: "Ivan", age: 18 },
+  { name: "Petr", age: 12 },
+  { name: "Sidor", age: 25 },
+  { name: "Vova", age: 4 },
+];
+let adultUser = users.filter(function (item) {
+  return item.age >= 18;
+});
+let minortUser = users.filter(function (item) {
+  return item.age < 18;
+});
+console.log(minortUser);
+console.log(adultUser);
+
+// TASK 4
+// - Создайте массив из 5 любых элементов.
+// - Напишите программу, которая будет клонировать заданный массив, не изменяя оригинала.
+// - Склонированный массив вывести в консоль
+
+let arrTASK_4 = ["A", "B", "C", "D", "E"];
+let cloneArr = arrTASK_4.slice();
+console.log(cloneArr);
+
+// TASK 5
+// - написать ф-цию, которая принимает в качестве параметра массив чисел, фильтрует его и
+//   возвращает массив нечетных чисел[1, 2, 3] -> [1, 3]
+// - написать ф-цию, которая принимает в качестве параметра массив чисел и возвращает
+//   массив их квадратов // [1, 2, 3, 4] -> [1, 4, 9, 16]
+// - написать функцию, которая в качестве параметра принимает массив с разными типами данных.
+//   возвращает true, если в массиве есть строка, возвращает false, если в массиве строк нет
+
+function getUnevenNum(arr) {
+  arr = arr.filter(function (item) {
+    return item % 2 == 1;
+  });
+  return console.log(arr);
+}
+getUnevenNum([1, 2, 3, 4, 5, 6, 7, 8, 9, 11, 21]);
+
+function getSquaresNum(arr) {
+  arr = arr.map(function (item) {
+    return item ** 2;
+  });
+  return console.log(arr);
+}
+getSquaresNum([1, 2, 3, 4, 5, 6, 7, 8, 9, 11, 21]);
+
+function getBoolean(arr) {
+  for (let i of arr) {
+    if (typeof i == "string") {
+      return console.log(true);
+    }
+  }
+  return console.log(false);
+}
+getBoolean([true, 1, 2, null, " "]);
+
+// TASK 6
+// - Написать ф-цию, которая принимает массив объектов типа {name: 'Jonh', age: 20}
+// - и возвращает массив значений лежащих в поле age
+// function getAges(array) {}
+// getAges([
+//   { name: "Sergey", age: 33 },
+//   { name: "Daria", age: 33 },
+// ]); // => [33, 33]
+
+function getAge(arr) {
+  for (let i of arr) {
+    console.log(i.age);
+  }
+}
+getAge([
+  { name: "Sergey", age: 33 },
+  { name: "Daria", age: 30 },
+]);
+
+// TASK 7
+// - Написать ф-цию, которая принимает массив объектов типа {name: 'Jonh', age: 20}
+// - и вторым параметром ключ, по которому надо собрать массив
+// ```javascript
+// function getAges(array, key) {}
+// getAges(
+//   [
+//     { name: "Sergey", age: 33 },
+//     { name: "Daria", age: 33 },
+//   ],
+//   "name"
+// ); // => ['Sergey', 'Daria']
+// getAges(
+//   [
+//     { name: "Sergey", age: 33 },
+//     { name: "Daria", age: 33 },
+//   ],
+//   "age"
+// ); // => [33, 33]
+
+//        !!! ВЕРНУТЬСЯ К ЭТОМУ !!!
+
+// TASK 8
+// - Написать ф-цию, которая принимает массив объектов.
+// - Значения этих объектов - числа. Вернуть объект с суммами ключей
+// function calculate(array) {}
+// calculate([
+//   { x: 1, z: 2, y: 3 },
+//   { x: 10, z: 21, y: 4 },
+//   { x: 2, z: 3, y: 4 },
+//   { a: 1, b: 2 },
+// ]);
+// // => { x: 13, z: 26, y: 11, a: 1, b: 2 }
+
+function calculate(arr) {
+  let newObj = {};
+  for (let obj of arr) {
+    for (let i in obj) {
+      if (newObj[i] == undefined) {
+        newObj[i] = 0;
+      }
+      newObj[i] += obj[i];
+    }
+  }
+  return console.log(newObj);
+}
+calculate([
+  { x: 2, z: 100, y: 3 },
+  { x: 10, z: 21, y: 4 },
+  { x: 2, z: 3, y: 4 },
+  { a: 1, b: 2 },
+]);
+
+// // TASK 9
+// - Необходимо создать массив из 15 элементов. В массиве обязательно должны быть одинаковые значения.
+// - Напишите код, который уберет эти дубликаты из созданного массива.
+
+let oldArr = [1, 1, 2, 2, 3, 3, 4, 4, 5, 5, 6, 6, 7, 7, 8];
+let newArr = [];
+oldArr.filter(function (item, index) {
+  if (oldArr.indexOf(item) == index) {
+    newArr.push(item);
+  }
+});
+console.log(newArr);
+
+// TASK 10
+// - Напишите код, который подсчитает количество повторяющихся элементов в массиве.
+// - И вывести это количество в консоль.
+
+let arrTask_10 = [1, 3, 4, 1, 1, 3, 4, 5];
+let result = {};
+for (let value of arrTask_10) {
+  if (result[value] != undefined) {
+    result[value]++;
+  } else {
+    result[value] = 1;
+  }
+}
+console.log(result);
+
+// TASK 11
+// - Напишите код, который разворачивает исходный массив и сохраняет это в новую переменную.
+// - Например: исходный массив - [1, 2, 3], результирующий массив - [3, 2, 1]
+
+let oldArr_TASK_11 = [1, 2, 3];
+let newArr_TASK_11 = oldArr_TASK_11.reverse();
+console.log(newArr_TASK_11);
+
+// TASK 12
+// - Создать массив из 20 чисел. Необходимо высчитать сумму всех элементов.(Используем reduce)
+
+let arr_TASK_12 = [
+  1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20,
+];
+let sumElements = arr_TASK_12.reduce(function (sum, item) {
+  return sum + item;
+}, 0);
+console.log(sumElements);
+
+// TASK 13
+// - Создать массив из 10 чисел. Необходимо создать новый массив, в котором числа будут возведены в квадрат.
+// - Например:
+//       [1,2,3] -> [1,4,9].
+
+let oldArrTask13 = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+let newArrTask13 = oldArrTask13.map(function (item) {
+  return item ** 2;
+});
+console.log(newArrTask13);
+
+// TASK 14
+// - Создать массив объектов с полями: имя, пол. Разделить этот массив на 2 массива (женский и мужской).
+// - Использовать reduce.
+
+//        !!! ВЕРНУТЬСЯ К ЭТОМУ !!!
+
+// TASK 15
+// - Написать функцию, которая принимает первым аргументом массив,
+// - а вторым любое значение, функция должна вернуть индекс если такое значение есть в массиве и -1 если его нет.
+// - (indexOf, findIndex не использовать)
+
+function getIndex(arr, num) {
+  let i = 0;
+  for (; i < arr.length; i++) {
+    if (arr[i] == num) {
+      return console.log(i);
+    }
+  }
+  return console.log((i = -1));
+}
+getIndex(["a", "b", 1, 2], 0);
+
+// TASK 16
+// - Написать функцию, которая принимает массив из чисел, а возвращает отсортированный массив.
+// - Для сортировки можно использовать метод sort, но еще лучше будет если попробовать написать свою сортировку.
+
+function getSortArr(arr) {
+  arr.sort(function (a, b) {
+    return a - b;
+  });
+  return console.log(arr);
+}
+getSortArr([5, 2, 8, 11, 9, 27]);
+
+// TASK 17
+// - Написать функцию сравнения двух массивов, которая возвращает true или false в зависимости от того,
+// - одинаковые у них элементы или нет.
+
+function compareArr(a, b) {
+  let strArr1 = a.join(",");
+  let strArr2 = b.join(",");
+  return console.log(strArr1 == strArr2);
+}
+compareArr([1, 2, 3], [1, 2, 4]);
+
+// TASK 18
+// - Описание задачи: Напишите функцию, которая разделит массив на части заданного размера и
+// - вернет массив элементами которого являются эти части.
+// - Пример функции:
+//   splitArray([1, 2, 3, 4, 5], 2) => [[1, 2], [3, 4], [5]]
+
+function splitArray(obj, num) {
+  let newArr = new Array(Math.ceil(obj.length / num));
+  for (let i = 0; i < newArr.length; i++) {
+    newArr[i] = obj.splice(0, num);
+  }
+  return console.log(newArr);
+}
+getNewArray([1, 2, 3, 4, 5], 2);
+
+// TASK 19
+// - Напишите функцию, которая очищает массив от нежелательных значений,
+// - таких как false, undefined, пустые строки, 0, null.
+
+function getCleanArr(arr) {
+  let newArr = arr.filter(function (item) {
+    return item != 0 && item != null;
+  });
+  return console.log(newArr);
+}
+getCleanArr([0, 1, null, 2, 3, null, undefined, false, ""]);
